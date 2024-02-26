@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>CRM Serwis</title>
+</head>
+<body>
+<header>
+    <div th:replace="header.html"></div>
+</header>
+
+<main>
+    <div class="container mt-5">
+        <h2>Aktualizacja Klienta</h2>
+        <form th:action="@{/update-customer}" th:object="${customer}" method="post">
+            <input type="hidden" th:field="*{customerId}" />
+
+            <div class="form-group">
+                <label for="firstName">Imię:</label>
+                <input type="text" id="firstName" th:field="*{firstName}" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label for="lastName">Nazwisko:</label>
+                <input type="text" id="lastName" th:field="*{lastName}" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" th:field="*{email}" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label for="phoneNumber">Numer telefonu:</label>
+                <input type="tel" id="phoneNumber" th:field="*{phoneNumber}" class="form-control" pattern="\d{9}" title="Numer telefonu musi składać się z dokładnie 9 cyfr" required />
+            </div>
+
+            <div class="form-group">
+                <label for="address">Adres:</label>
+                <input type="text" id="address" th:field="*{address}" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label for="nip">NIP:</label>
+                <input type="text" id="nip" th:field="*{nip}" class="form-control" pattern="\d{10}" title="NIP musi składać się z dokładnie 10 cyfr" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Aktualizuj Klienta</button>
+        </form>
+    </div>
+</main>
+</body>
+</html>

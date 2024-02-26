@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>CRM Serwis</title>
+</head>
+<body>
+<header>
+  <div th:replace="header.html"></div>
+</header>
+
+<main>
+  <div class="container mt-5">
+    <h2>Dodawanie nowej transakcji</h2>
+    <form th:action="@{/form-add-transaction}" th:object="${transaction}" method="post">
+      <div class="form-group">
+        <label for="customer">Klient:</label>
+        <select th:field="*{customer}" class="form-control" id="customer" name="customer" required>
+          <option th:each="customer : ${customer}" th:value="${customer.customerId}" th:text="${customer.firstName}"></option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="product">Produkt:</label>
+        <select th:field="*{product}" class="form-control" id="product" name="product" required>
+          <option th:each="product : ${product}" th:value="${product.productId}" th:text="${product.productName}"></option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="user">Pracownik:</label>
+        <p th:field="*{user}"  class="form-control" id="user" th:text="${user.username}" ></p>
+      </div>
+      <div class="form-group">
+        <label for="transactionsType">Typ transakcji:</label>
+        <select th:field="*{transactionType}" class="form-control" id="transactionsType" name="transactionsType" required>
+          <option th:each="type : ${transactionType}" th:value="${type}" th:text="${type.transactionTypeName}"></option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="quantity">Ilość:</label>
+        <input th:field="*{quantity}" type="number" class="form-control" id="quantity" name="quantity"
+                required>
+      </div>
+      <div class="form-group">
+        <label for="orderDate">Data zamówienia:</label>
+        <input th:field="*{orderDate}" type="date" class="form-control" id="orderDate" name="orderDate"
+                required>
+      </div>
+      <div class="form-group">
+        <label for="notes">Notatki:</label>
+        <input th:field="*{notes}" type="text" class="form-control" id="notes" name="notes"
+               >
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary">Dodaj Transakcję</button>
+    </form>
+  </div>
+</main>
+
+
+</body>
+</html>

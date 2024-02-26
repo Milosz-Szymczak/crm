@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>CRM Serwis</title>
+</head>
+<body>
+<header>
+  <div th:replace="header.html"></div>
+</header>
+
+<div class="container mt-5">
+  <h2>Transakcje</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Klient</th>
+      <th>Produkt</th>
+      <th>Handlowiec</th>
+      <th>Typ transakcji</th>
+      <th>Ilość</th>
+      <th>Cena</th>
+      <th>Data zamówienia</th>
+      <th>Opis</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="transaction : ${transaction}">
+      <td th:text="${transaction.orderId}"></td>
+      <td th:text="${transaction.customer.firstName}"></td>
+      <td th:text="${transaction.product.productName}"></td>
+      <td th:text="${transaction.user != null ? transaction.user.username : 'Unknown'}"></td>
+      <td th:text="${transaction.transactionType}"></td>
+      <td th:text="${transaction.quantity}"></td>
+      <td th:text="${transactionPrice.get(transaction)}"></td>
+      <td th:text="${transaction.orderDate}"></td>
+      <td th:text="${transaction.notes}"></td>
+      <td>
+        <a th:href="@{/form-update-transaction/{transactionId}(transactionId=${transaction.orderId})}" class="btn btn-primary">Update</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+
+
+</div>
+</body>
+</html>

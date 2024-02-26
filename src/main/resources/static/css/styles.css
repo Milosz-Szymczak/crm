@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+main {
+    margin: 10px;
+}
+
+img {
+    height: auto;
+    width: 100px;
+}
+
+footer {
+    background-color: burlywood;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}

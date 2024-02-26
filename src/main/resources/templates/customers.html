@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>CRM Serwis</title>
+</head>
+<body>
+<header>
+  <div th:replace="header.html"></div>
+</header>
+
+<div class="container mt-5">
+  <h2>Klienci</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Imię</th>
+      <th>Nazwisko</th>
+      <th>Email</th>
+      <th>Numer telefonu</th>
+      <th>Adres</th>
+      <th>Nip</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="customer : ${customers}">
+      <td th:text="${customer.customerId}"></td>
+      <td th:text="${customer.firstName}"></td>
+      <td th:text="${customer.lastName}"></td>
+      <td th:text="${customer.email}"></td>
+      <td th:text="${customer.phoneNumber}"></td>
+      <td th:text="${customer.address}"></td>
+      <td th:text="${customer.nip}"></td>
+      <td>
+        <a th:href="@{/form-update-customer/{customerId}(customerId=${customer.customerId})}" class="btn btn-primary">Update</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+</body>
+</html>

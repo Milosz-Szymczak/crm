@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>CRM Serwis</title>
+</head>
+<body>
+<header>
+  <div th:replace="header.html"></div>
+</header>
+
+<main>
+  <div class="container mt-5">
+    <h2>Aktualizacja Spotkania</h2>
+
+    <form th:action="@{/update-meeting}" th:object="${meeting}" method="post" class="needs-validation" novalidate>
+      <input type="hidden" th:field="*{visitId}" />
+
+      <div class="form-group">
+        <label for="meetingType">Typ spotkania:</label>
+        <select th:field="*{meetingType}" id="meetingType" name="meetingType" class="form-control" required>
+          <option th:each="type : ${meetingType}" th:value="${type}" th:text="${type.name()}"></option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="visitDate">Data wizyty:</label>
+        <input type="date" id="visitDate" th:field="*{visitDate}" class="form-control" required />
+      </div>
+
+      <div class="form-group">
+        <label for="outcome">Wynik:</label>
+        <input type="text" id="outcome" th:field="*{outcome}" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="notes">Notatki:</label>
+        <textarea id="notes" th:field="*{notes}" class="form-control"></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Aktualizuj Spotkanie</button>
+    </form>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

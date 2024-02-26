@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>CRM Serwis</title>
+</head>
+<body>
+<header>
+    <div th:replace="header.html"></div>
+</header>
+<main>
+    <div class="container mt-5">
+        <h2>Aktualizacja Transakcji</h2>
+
+        <form th:action="@{/update-transaction}" th:object="${transaction}" method="post" class="needs-validation" novalidate>
+            <input type="hidden" th:field="*{orderId}" />
+
+            <div class="form-group">
+                <label for="customer">Klient:</label>
+                <input type="text" id="customer" th:field="*{customer.firstName}" class="form-control" disabled />
+            </div>
+
+            <div class="form-group">
+                <label for="product">Produkt:</label>
+                <input type="text" id="product" th:field="*{product.productName}" class="form-control" disabled />
+            </div>
+
+            <div class="form-group">
+                <label for="user">Użytkownik:</label>
+                <input type="text" id="user" th:field="*{user.username}" class="form-control" disabled />
+            </div>
+
+            <div class="form-group">
+                <label for="quantity">Ilość:</label>
+                <input type="number" id="quantity" th:field="*{quantity}" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label for="orderDate">Data Zamówienia:</label>
+                <input type="date" id="orderDate" th:field="*{orderDate}" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label for="notes">Notatki:</label>
+                <textarea id="notes" th:field="*{notes}" class="form-control"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Aktualizuj Transakcję</button>
+        </form>
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

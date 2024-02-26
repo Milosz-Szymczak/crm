@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>CRM Serwis</title>
+</head>
+<body>
+<header>
+  <div th:replace="header.html"></div>
+</header>
+
+<div class="container mt-5">
+  <h2>Spotkania</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Klient</th>
+      <th>Handlowiec</th>
+      <th>Rodzaj spotkania</th>
+      <th>Data</th>
+      <th>Wynik</th>
+      <th>Notatki</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="meeting : ${meeting}">
+      <td th:text="${meeting.visitId}"></td>
+      <td th:text="${meeting.customer.firstName}"></td>
+      <td th:text="${meeting.user != null ? meeting.user.username : 'ADMIN'}"></td>
+      <td th:text="${meeting.meetingType}"></td>
+      <td th:text="${meeting.visitDate}"></td>
+      <td th:text="${meeting.outcome}"></td>
+      <td th:text="${meeting.notes}"></td>
+      <td>
+        <a th:href="@{/form-update-meeting/{id}(id=${meeting.visitId})}" class="btn btn-primary">Update</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <title>CRM Serwis</title>
+</head>
+<body>
+<header>
+  <div th:replace="header.html"></div>
+</header>
+
+<div class="container mt-5">
+  <h2>Produkty</h2>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nazwa</th>
+      <th>Cena</th>
+      <th>Opis</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${product}">
+      <td th:text="${product.productId}"></td>
+      <td th:text="${product.productName}"></td>
+      <td th:text="${product.price}"></td>
+      <td th:text="${product.productDescription}"></td>
+      <td>
+        <a th:href="@{/form-update-product/{productId}(productId=${product.productId})}" class="btn btn-primary">Update</a>
+
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+</body>
+</html>

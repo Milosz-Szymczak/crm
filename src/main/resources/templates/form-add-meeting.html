@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>CRM Serwis</title>
+</head>
+<body>
+<header>
+    <div th:replace="header.html"></div>
+</header>
+
+<main>
+    <div class="container mt-5">
+        <h2>Dodawanie nowego spotkania </h2>
+        <form th:action="@{/form-add-meeting}" th:object="${meeting}" method="post">
+            <div class="form-group">
+                <label for="customer">Klient:</label>
+                <select th:field="*{customer}" class="form-control" id="customer" name="customer" required>
+                    <option th:each="c : ${customer}" th:value="${c.customerId}" th:text="${c.firstName}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="user">Handlowiec:</label>
+                <p th:field="*{user}"  class="form-control" id="user" th:text="${user.username}" ></p>
+            </div>
+            <div class="form-group">
+                <label for="meetingType">Typ spotkania:</label>
+                <select th:field="*{meetingType}" class="form-control" id="meetingType" name="meetingType" required>
+                    <option th:each="type : ${meetingType}" th:value="${type}" th:text="${type.name()}"></option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="visitDate">Data spotkania:</label>
+                <input th:field="*{visitDate}" type="date" class="form-control" id="visitDate" name="visitDate" required>
+            </div>
+            <div class="form-group">
+                <label for="outcome">Wynik:</label>
+                <input th:field="*{outcome}" type="text" class="form-control" id="outcome" name="outcome" required>
+            </div>
+            <div class="form-group">
+                <label for="notes">Notatki:</label>
+                <input th:field="*{notes}" type="text" class="form-control" id="notes" name="notes">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Dodaj Spotkanie</button>
+        </form>
+
+    </div>
+</main>
+
+
+</body>
+</html>
